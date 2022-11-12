@@ -14,6 +14,15 @@ public class LeapYear {
         }
     }
 
+    /** this method is used to judge whether a year is leapyear
+     *  @param year to be analyzed
+     */
+    public static boolean isLeapYear(int year){
+        if((year % 400 == 0) || (year % 4 == 0 && year % 100 != 0)){
+            return true;
+        }
+        return false;
+    }
     /** Must be provided an integer as a command line argument ARGS. */
     public static void main(String[] args) {
         if (args.length < 1) {
