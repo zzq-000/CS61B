@@ -35,9 +35,9 @@ public class NBody{
 
         StdDraw.picture(0, 0, "images/starfield.jpg");
         // StdDraw.show();
-        for(Planet planet:planetArray){     
-            planet.imgFileName = "images/" + planet.imgFileName;
-        }
+        // for(Planet planet:planetArray){     
+        //     planet.imgFileName = "images/" + planet.imgFileName;
+        // }
         StdDraw.show();
 
         int timer = 0;
