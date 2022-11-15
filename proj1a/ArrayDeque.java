@@ -40,13 +40,11 @@ public class ArrayDeque<T> {
         T[] newData = (T[]) new Object[(int) ((double) this.data.length * factor)];
         int ptr = this.head;
         int newPtr = 0;
-
         int oldSize = size();
-
         while (ptr % this.data.length != this.tail) {
             newData[newPtr] = this.data[ptr];
             this.data[ptr] = null;
-            ++ptr;
+            ptr = plusOne(ptr);
             ++newPtr;
         }
         this.data = newData;
@@ -69,7 +67,7 @@ public class ArrayDeque<T> {
         }
 
         this.data[this.tail] = item;
-        ++this.tail;
+        this.tail = plusOne(this.tail);
     }
 
     public boolean isEmpty() {
