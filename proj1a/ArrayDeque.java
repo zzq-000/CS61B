@@ -3,7 +3,7 @@
 // (powered by FernFlower decompiler)
 //
 
-class ArrayDeque<T> {
+public class ArrayDeque<T> {
     private static final double THRESHOLD = 0.25;
     private static final int INITIAL_SIZE = 8;
     private int head;
