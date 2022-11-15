@@ -92,7 +92,7 @@ public class ArrayDeque<T> {
         if (!this.isEmpty()) {
             T result = this.data[this.head];
             this.head = this.plusOne(this.head);
-            if (this.isShrink()) {
+            if (data.length > INITIAL_SIZE && this.isShrink()) {
                 this.resize(0.5);
             }
             return result;
@@ -104,7 +104,7 @@ public class ArrayDeque<T> {
         if (!this.isEmpty()) {
             T result = this.data[this.tail - 1];
             this.tail = this.minusOne(this.tail);
-            if (this.isShrink()) {
+            if (data.length > INITIAL_SIZE && this.isShrink()) {
                 this.resize(0.5);
             }
             return result;
