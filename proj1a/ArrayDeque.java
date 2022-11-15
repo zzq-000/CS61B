@@ -102,7 +102,7 @@ public class ArrayDeque<T> {
 
     public T removeLast() {
         if (!this.isEmpty()) {
-            T result = this.data[this.tail - 1];
+            T result = this.data[minusOne(this.tail)];
             this.tail = this.minusOne(this.tail);
             if (data.length > INITIAL_SIZE && this.isShrink()) {
                 this.resize(0.5);
