@@ -1,9 +1,9 @@
 
 class LinkedListDeque<T> {
     private static class Node<T> {
-        public T first;
-        public Node<T> prev;
-        public Node<T> rest;
+        private T first;
+        private Node<T> prev;
+        private Node<T> rest;
 
         public Node(T first) {
             this.first = first;
@@ -50,7 +50,7 @@ class LinkedListDeque<T> {
     }
 
     public void printDeque() {
-        for(Node<T> ptr = this.sentinelNode.rest; ptr != this.sentinelNode; ptr = ptr.rest) {
+        for (Node<T> ptr = this.sentinelNode.rest; ptr != this.sentinelNode; ptr = ptr.rest) {
             System.out.print(ptr.first);
             if (ptr.rest != this.sentinelNode) {
                 System.out.print(" ");
@@ -87,11 +87,11 @@ class LinkedListDeque<T> {
         }
     }
 
-    public T getIndex(int index) {
+    public T get(int index) {
         if (index < this.size && index >= 0) {
             Node<T> ptr = this.sentinelNode.rest;
 
-            for(int count = 0; ptr != this.sentinelNode; ++count) {
+            for (int count = 0; ptr != this.sentinelNode; ++count) {
                 if (count == index) {
                     return ptr.first;
                 }
@@ -105,8 +105,8 @@ class LinkedListDeque<T> {
         if (current == sentinel) {
             return null;
         } else {
-            return index == 0 ?
-                    current.first : this.getRecursive(sentinel, current.rest, index - 1);
+            return index == 0
+                    ? current.first : this.getRecursive(sentinel, current.rest, index - 1);
         }
     }
 

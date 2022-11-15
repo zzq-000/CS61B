@@ -5,12 +5,13 @@
 
 class ArrayDeque<T> {
     private static final double THRESHOLD = 0.25;
+    private static final int INITIAL_SIZE = 8;
     private int head;
     private int tail;
-    private T[] data ;
+    private T[] data;
 
     public ArrayDeque() {
-        this.data = (T[])new Object[8];
+        this.data = (T[]) new Object[INITIAL_SIZE];
         this.head = 0;
         this.tail = 0;
     }
@@ -28,7 +29,7 @@ class ArrayDeque<T> {
     }
 
     private double usage() {
-        return (double)this.size() / (double)this.data.length;
+        return (double) this.size() / (double) this.data.length;
     }
 
     private boolean isShrink() {
@@ -36,7 +37,7 @@ class ArrayDeque<T> {
     }
 
     private void resize(double factor) {
-        T[] newData = (T [])new Object[(int)((double)this.data.length * factor)];
+        T[] newData = (T[]) new Object[(int) ((double) this.data.length * factor)];
         int ptr = this.head;
         int newPtr = 0;
 
@@ -80,7 +81,7 @@ class ArrayDeque<T> {
     }
 
     public void printDeque() {
-        for(int ptr = this.head; ptr % this.data.length != this.tail; ptr = this.plusOne(ptr)) {
+        for (int ptr = this.head; ptr % this.data.length != this.tail; ptr = this.plusOne(ptr)) {
             System.out.print(this.data[ptr]);
             if (ptr % this.data.length != this.minusOne(this.tail)) {
                 System.out.print(" ");
@@ -113,7 +114,7 @@ class ArrayDeque<T> {
         return null;
     }
 
-    public T getIndex(int index) {
+    public T get(int index) {
         return this.data[(this.head + index) % this.data.length];
     }
 }
