@@ -1,30 +1,41 @@
 
 class LinkedListDeque<T> {
+    private static class Node<T> {
+        public T first;
+        public Node<T> prev;
+        public Node<T> rest;
+
+        public Node(T first) {
+            this.first = first;
+            this.prev = null;
+            this.rest = null;
+        }
+
+        public Node(T first, Node<T> prev, Node<T> rest) {
+            this.first = first;
+            this.prev = prev;
+            this.rest = rest;
+        }
+    }
     private int size;
-    private final Node<T> sentinelNode = new Node((Object)null);
+    private final Node<T> sentinelNode;
 
     public LinkedListDeque() {
+        this.sentinelNode = new Node<>(null);
         this.sentinelNode.prev = this.sentinelNode;
         this.sentinelNode.rest = this.sentinelNode;
         this.size = 0;
     }
 
-    public LinkedListDeque(T item) {
-        Node<T> tempNode = new Node(item, this.sentinelNode, this.sentinelNode);
-        this.sentinelNode.rest = tempNode;
-        this.sentinelNode.prev = tempNode;
-        this.size = 1;
-    }
-
     public void addFirst(T item) {
-        Node<T> tempNode = new Node(item, this.sentinelNode, this.sentinelNode.rest);
+        Node<T> tempNode = new Node<>(item, this.sentinelNode, this.sentinelNode.rest);
         this.sentinelNode.rest.prev = tempNode;
         this.sentinelNode.rest = tempNode;
         ++this.size;
     }
 
     public void addLast(T item) {
-        Node<T> tempNode = new Node(item, this.sentinelNode.prev, this.sentinelNode);
+        Node<T> tempNode = new Node<>(item, this.sentinelNode.prev, this.sentinelNode);
         this.sentinelNode.prev.rest = tempNode;
         this.sentinelNode.prev = tempNode;
         ++this.size;
@@ -84,21 +95,18 @@ class LinkedListDeque<T> {
                 if (count == index) {
                     return ptr.first;
                 }
-
                 ptr = ptr.rest;
             }
-
-            return null;
-        } else {
-            return null;
         }
+        return null;
     }
 
     private T getRecursive(Node<T> sentinel, Node<T> current, int index) {
         if (current == sentinel) {
             return null;
         } else {
-            return index == 0 ? current.first : this.getRecursive(sentinel, current.rest, index - 1);
+            return index == 0 ?
+                    current.first : this.getRecursive(sentinel, current.rest, index - 1);
         }
     }
 
@@ -106,21 +114,5 @@ class LinkedListDeque<T> {
         return this.getRecursive(this.sentinelNode, this.sentinelNode.rest, index);
     }
 
-    private static class Node<T> {
-        public T first;
-        public Node<T> prev;
-        public Node<T> rest;
 
-        public Node(T first) {
-            this.first = first;
-            this.prev = null;
-            this.rest = null;
-        }
-
-        public Node(T first, Node<T> prev, Node<T> rest) {
-            this.first = first;
-            this.prev = prev;
-            this.rest = rest;
-        }
-    }
 }
