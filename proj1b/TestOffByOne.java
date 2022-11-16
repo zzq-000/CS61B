@@ -9,7 +9,7 @@ public class TestOffByOne {
 
 
     @Test
-    public void testEqualChars(){
+    public void testEqualChars() {
         boolean actual = offByOne.equalChars('r', 'q');
 
         assertTrue(actual);
