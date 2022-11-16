@@ -28,6 +28,12 @@ public class TestOffByOne {
         actual = offByOne.equalChars('a', 'a');
         assertFalse(actual);
 
+        actual = offByOne.equalChars('$', '%');
+        assertTrue(actual);
+
+        actual = offByOne.equalChars('a', 'B');
+        assertFalse(actual);
+
     }
     // Your tests go here.
 }
