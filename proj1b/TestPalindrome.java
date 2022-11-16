@@ -15,4 +15,46 @@ public class TestPalindrome {
         }
         assertEquals("persiflage", actual);
     }
+
+    @Test
+    public void testIsPalindrome(){
+        boolean actual = palindrome.isPalindrome("alpha");
+
+        assertFalse(actual);
+
+        actual = palindrome.isPalindrome("alphae");
+
+        assertFalse(actual);
+
+        actual = palindrome.isPalindrome("betaateb");
+
+        assertTrue(actual);
+
+        actual = palindrome.isPalindrome("aka");
+
+        assertTrue(actual);
+
+    }
+
+    @Test
+    public void testIsPalindromeOffByOne(){
+        CharacterComparator cc = new OffByOne();
+        boolean actual = palindrome.isPalindrome("flake", cc);
+
+        assertTrue(actual);
+
+//        actual = palindrome.isPalindrome("alphae");
+//
+//        assertFalse(actual);
+//
+//        actual = palindrome.isPalindrome("betaateb");
+//
+//        assertTrue(actual);
+//
+//        actual = palindrome.isPalindrome("aka");
+//
+//        assertTrue(actual);
+
+    }
+
 }
