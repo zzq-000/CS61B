@@ -33,7 +33,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T>  {
      */
     public void enqueue(T x) {
         if (isFull()) {
-            throw new RuntimeException("the bounded queue is already full");
+            throw new RuntimeException("Ring Buffer Overflow");
         } else {
             rb[last] = x;
             last = addOne(last);
@@ -48,7 +48,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T>  {
      */
     public T dequeue() {
         if (isEmpty()) {
-            throw new RuntimeException("the bounded queue is already empty");
+            throw new RuntimeException("Ring Buffer Underflow");
         } else {
             T result = rb[first];
             rb[first] = null;
@@ -71,7 +71,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T>  {
     public Iterator<T> iterator() {
         return new ArrayRingIterator<>();
     }
-    private class ArrayRingIterator<E> implements Iterator<E>{
+    private class ArrayRingIterator<E> implements Iterator<E> {
         private int cursor = first;
         @Override
         public boolean hasNext() {
@@ -80,12 +80,11 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T>  {
 
         @Override
         public E next() {
-            E result = (E)rb[cursor];
+            E result = (E) rb[cursor];
             cursor = addOne(cursor);
             return result;
         }
 
 
     }
-    // TODO: When you get to part 5, implement the needed code to support iteration.
 }
