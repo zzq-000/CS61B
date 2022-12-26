@@ -14,9 +14,9 @@ public class PercolationStats {
             throw new IllegalArgumentException();
         }
         history = new double[T];
-        percolation = pf.make(N);
         times = T;
         for (int i = 0; i < T; i++) {
+            percolation = pf.make(N);
             while (!percolation.percolates()) {
                 int place = chooseASite(N);
                 int row = (place - 1) / N;
