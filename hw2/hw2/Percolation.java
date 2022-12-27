@@ -48,16 +48,16 @@ public class Percolation {
         return row * grids.length + col + 1;
     }
     private void merge(int row, int col) {
-        if (isOpen(row - 1, col)) {
+        if (checkBoundary(row - 1) && checkBoundary(col) && isOpen(row - 1, col)) {
             unionUF.union(convert(row, col), convert(row - 1, col));
         }
-        if (isOpen(row + 1, col)) {
+        if (checkBoundary(row + 1) && checkBoundary(col) && isOpen(row + 1, col)) {
             unionUF.union(convert(row, col), convert(row + 1, col));
         }
-        if (isOpen(row, col - 1)) {
+        if (checkBoundary(row) && checkBoundary(col - 1) && isOpen(row, col - 1)) {
             unionUF.union(convert(row, col), convert(row, col - 1));
         }
-        if (isOpen(row, col + 1)) {
+        if (checkBoundary(row) && checkBoundary(col + 1) && isOpen(row, col + 1)) {
             unionUF.union(convert(row, col), convert(row, col + 1));
         }
     }
